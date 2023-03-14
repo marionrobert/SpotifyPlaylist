@@ -58,3 +58,6 @@ playlist_description = input("Add a description to your playlist or press enter:
 playlist = sp.user_playlist_create(user=user_id, name=f"{playlist_name}", public=False, collaborative=False, description=f"{playlist_description}")
 playlist_url = playlist["external_urls"]['spotify']
 print(f"Here is the link to access your playlist: {playlist_url}")
+
+# add all songs to the playlist thank to their uri
+sp.playlist_add_items(playlist_id=playlist["id"], items=song_uris)
