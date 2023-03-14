@@ -15,5 +15,5 @@ soup = BeautifulSoup(web_data, "html.parser")
 all_songs = soup.select("li #title-of-a-story")
 print(len(all_songs))
 
-all_song_titles = [song.getText() for song in all_songs]
+all_song_titles = [song.getText().replace("\n", "").replace("\t", "") for song in all_songs]
 print(all_song_titles)
