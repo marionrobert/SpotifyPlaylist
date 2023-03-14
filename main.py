@@ -36,6 +36,7 @@ sp = spotipy.Spotify(
 )
 user_id = sp.current_user()["id"]
 
+# get the uri of each song from spotify
 song_uris = []
 year = specialdate.split("-")[0]
 
@@ -48,4 +49,12 @@ for song in all_song_titles:
     except IndexError:
         print(f"{song} doesn't exist in Spotify. Skipped.")
 
-print(song_uris)
+# print(song_uris)
+
+
+# create a spotify playlist
+playlist_name = input("How do you want to name your SPOTIFY playlist?\n")
+playlist_description = input("Add a description to your playlist or press enter:\n")
+playlist = sp.user_playlist_create(user=user_id, name=f"{playlist_name}", public=False, collaborative=False, description=f"{playlist_description}")
+playlist_url = playlist["external_urls"]['spotify']
+print(f"Here is the link to access your playlist: {playlist_url}")
